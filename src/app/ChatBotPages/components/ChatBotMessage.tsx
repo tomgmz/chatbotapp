@@ -1,8 +1,8 @@
 "use client";
 
-import { Box, Paper, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FaceIcon from "@mui/icons-material/Face";
+import { Paper, Typography } from "@mui/material";
 
 export default function ChatBotMessage({
   text,
@@ -12,18 +12,15 @@ export default function ChatBotMessage({
   isBot: boolean;
 }) {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "flex-end",
-        gap: 1,
-        flexDirection: isBot ? "row" : "row-reverse",
-      }}
+    <div
+      className={`flex items-end gap-2 w-full ${
+        isBot ? "flex-row" : "flex-row-reverse"
+      }`}
     >
       {isBot ? (
-        <AccountCircleIcon sx={{ fontSize: 32, color: "action.active" }} />
+        <AccountCircleIcon className="text-gray-600" />
       ) : (
-        <FaceIcon sx={{ fontSize: 32, color: "primary.main" }} />
+        <FaceIcon className="text-blue-600" />
       )}
 
       <Paper
@@ -55,6 +52,6 @@ export default function ChatBotMessage({
           {text}
         </Typography>
       </Paper>
-    </Box>
+    </div>
   );
 }
