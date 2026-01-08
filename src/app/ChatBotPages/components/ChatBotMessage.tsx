@@ -1,45 +1,60 @@
 "use client";
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Paper, Typography } from '@mui/material';
-import FaceIcon from '@mui/icons-material/Face';
+import { Box, Paper, Typography } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import FaceIcon from "@mui/icons-material/Face";
 
-export default function ChatBotMessage({ text, isBot }: { text: string; isBot: boolean }) {
+export default function ChatBotMessage({
+  text,
+  isBot,
+}: {
+  text: string;
+  isBot: boolean;
+}) {
   return (
-    <div 
-      className={`flex w-full items-end gap-2 
-        ${isBot ? 'flex-row justify-start' : 'flex-row-reverse justify-start'}`}
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "flex-end",
+        gap: 1,
+        flexDirection: isBot ? "row" : "row-reverse",
+      }}
     >
       {isBot ? (
-        <AccountCircleIcon sx={{ fontSize: 32, color: 'action.active', mb: 0.5 }} />
+        <AccountCircleIcon sx={{ fontSize: 32, color: "action.active" }} />
       ) : (
-        <FaceIcon sx={{ fontSize: 32, color: 'primary.main', mb: 0.5 }} />
+        <FaceIcon sx={{ fontSize: 32, color: "primary.main" }} />
       )}
-      
+
       <Paper
         elevation={0}
         sx={{
-          p: 1.5,
-          bgcolor: isBot ? 'grey.200' : 'primary.main',
-          color: isBot ? 'text.primary' : 'white',
-          maxWidth: '70%',
+          px: 1.5,
+          py: 1,
+          maxWidth: {
+            xs: "85%",
+            sm: "75%",
+            md: "65%",
+          },
+          bgcolor: isBot ? "grey.200" : "primary.main",
+          color: isBot ? "text.primary" : "common.white",
           borderRadius: 3,
           ...(isBot
             ? { borderBottomLeftRadius: 0 }
             : { borderBottomRightRadius: 0 }),
         }}
       >
-        <Typography 
-          variant="body2" 
-          sx={{ 
-            overflowWrap: 'anywhere', 
-            wordBreak: 'break-word',
-            lineHeight: 1.5
+        <Typography
+          variant="body2"
+          sx={{
+            lineHeight: 1.5,
+            wordBreak: "break-word",
+            overflowWrap: "anywhere",
           }}
         >
           {text}
         </Typography>
       </Paper>
-    </div>
+    </Box>
   );
 }
